@@ -3,7 +3,8 @@ package com.application.ms_payment.domain.user;
 public class User {
 
     private String id;
-    private String cpf;
+    private Long cpf;
+    private Long cnpj;
     private String name;
     private String email;
     private String password;
@@ -11,9 +12,10 @@ public class User {
     public User() {
     }
 
-    public User(String id, String cpf, String name, String email, String password) {
+    public User(String id, Long cpf, Long cnpj, String name, String email, String password) {
         this.id = id;
         this.cpf = cpf;
+        this.cnpj = cnpj;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -27,12 +29,20 @@ public class User {
         this.id = id;
     }
 
-    public String getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
+    }
+
+    public Long getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(Long cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getName() {

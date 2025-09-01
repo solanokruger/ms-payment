@@ -27,7 +27,7 @@ public class UserRepositoryImpl implements UserRepository {
         MongoUserEntity mongoUserEntity = new MongoUserEntity(user);
         this.mongoUserRepository.save(mongoUserEntity);
 
-        return new User(mongoUserEntity.getId(), mongoUserEntity.getCpf(), mongoUserEntity.getName(), mongoUserEntity.getEmail(), mongoUserEntity.getPassword());
+        return new User(mongoUserEntity.getId(), mongoUserEntity.getCpf(), mongoUserEntity.getCnpj(), mongoUserEntity.getName(), mongoUserEntity.getEmail(), mongoUserEntity.getPassword());
     }
 
     @Override
