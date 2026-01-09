@@ -1,12 +1,10 @@
 package com.application.ms_payment.adapters.outbound.entities;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 
@@ -14,13 +12,16 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 @Setter
-@Document(collection = "wallet")
-public class MongoWalletEntity {
+@Entity
+@Table(name = "USER_WALLET")
+public class JpaUserWalletEntity {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Field("currency")
+    @Column(name = "CURRENCY")
     private BigDecimal currency;
+
 
 }

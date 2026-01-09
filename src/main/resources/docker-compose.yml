@@ -1,17 +1,17 @@
 version: '3.8'
 
 services:
-  mongodb:
-    image: mongo:7.0
-    container_name: mongodb
+  db:
+    image: mysql:8.0
+    container_name: ms-payment-db
     restart: always
-    ports:
-      - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: user
-      MONGO_INITDB_ROOT_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ms_payment
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3306:3306"
     volumes:
-      - mongodb_data:/data/db
-
-volumes:
-  mongodb_data:
+      - db_data:/var/lib/mysql
+        - ./V1__init.sql:/docker-entrypoint-initdb.d/V1__init.sql

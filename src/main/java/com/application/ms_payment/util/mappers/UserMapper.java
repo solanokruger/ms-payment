@@ -1,6 +1,6 @@
 package com.application.ms_payment.util.mappers;
 
-import com.application.ms_payment.adapters.outbound.entities.MongoUserEntity;
+import com.application.ms_payment.adapters.outbound.entities.JpaUserEntity;
 import com.application.ms_payment.domain.user.User;
 import com.application.ms_payment.domain.user.UserRequestDTO;
 import org.mapstruct.Mapper;
@@ -11,16 +11,16 @@ import org.mapstruct.Mappings;
 public interface UserMapper {
 
     @Mappings({
-            @Mapping(source = "mongoUserEntity.id", target = "id"),
-            @Mapping(source = "mongoUserEntity.cpf", target = "cpf"),
-            @Mapping(source = "mongoUserEntity.name", target = "name"),
-            @Mapping(source = "mongoUserEntity.email", target = "email"),
-            @Mapping(source = "mongoUserEntity.password", target = "password")
+            @Mapping(source = "jpaUserEntity.id", target = "id"),
+            @Mapping(source = "jpaUserEntity.document", target = "document"),
+            @Mapping(source = "jpaUserEntity.name", target = "name"),
+            @Mapping(source = "jpaUserEntity.email", target = "email"),
+            @Mapping(source = "jpaUserEntity.password", target = "password")
     })
-    User toDomain(MongoUserEntity mongoUserEntity);
+    User toDomain(JpaUserEntity jpaUserEntity);
 
     @Mappings({
-            @Mapping(source = "userRequestDTO.cpf", target = "cpf"),
+            @Mapping(source = "userRequestDTO.document", target = "document"),
             @Mapping(source = "userRequestDTO.name", target = "name"),
             @Mapping(source = "userRequestDTO.email", target = "email"),
             @Mapping(source = "userRequestDTO.password", target = "password")

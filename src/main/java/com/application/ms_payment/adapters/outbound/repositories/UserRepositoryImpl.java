@@ -1,6 +1,6 @@
 package com.application.ms_payment.adapters.outbound.repositories;
 
-import com.application.ms_payment.adapters.outbound.entities.MongoUserEntity;
+import com.application.ms_payment.adapters.outbound.entities.JpaUserEntity;
 import com.application.ms_payment.domain.user.User;
 import com.application.ms_payment.domain.user.UserRepository;
 import com.application.ms_payment.util.mappers.UserMapper;
@@ -12,27 +12,28 @@ import java.util.Optional;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
-    private final MongoUserRepository mongoUserRepository;
+    private final JpaUserRepository jpaUserRepository;
 
     @Autowired
     private UserMapper userMapper;
 
-    public UserRepositoryImpl(MongoUserRepository mongoUserRepository, UserMapper userMapper) {
-        this.mongoUserRepository = mongoUserRepository;
+    public UserRepositoryImpl(JpaUserRepository jpaUserRepository, UserMapper userMapper) {
+        this.jpaUserRepository = jpaUserRepository;
         this.userMapper = userMapper;
     }
 
     @Override
     public User save(User user) {
-        MongoUserEntity mongoUserEntity = new MongoUserEntity(user);
-        this.mongoUserRepository.save(mongoUserEntity);
+        JpaUserEntity jpaUserEntity = new JpaUserEntity(user);
+        this.jpaUserRepository.save(jpaUserEntity);
 
-        return new User(mongoUserEntity.getId(), mongoUserEntity.getCpf(), mongoUserEntity.getCnpj(), mongoUserEntity.getName(), mongoUserEntity.getEmail(), mongoUserEntity.getPassword());
+        return new User(
+                jpaUserEntity.getId(), jpaUserEntity.getDocument(), jpaUserEntity.getName(), jpaUserEntity.getEmail(), jpaUserEntity.getPassword());
     }
 
     @Override
     public Optional<User> findById(Long id) {
-        Optional<MongoUserEntity> userEntity = this.mongoUserRepository.findById(id);
+        Optional<JpaUserEntity> userEntity = this.jpaUserRepository.findById(id);
 
         return userEntity.map(userMapper::toDomain);
     }

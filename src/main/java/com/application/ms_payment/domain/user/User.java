@@ -2,47 +2,29 @@ package com.application.ms_payment.domain.user;
 
 public class User {
 
-    private String id;
-    private Long cpf;
-    private Long cnpj;
+    private Long id;
     private String name;
+    private String document;
     private String email;
     private String password;
 
     public User() {
     }
 
-    public User(String id, Long cpf, Long cnpj, String name, String email, String password) {
+    public User(Long id, String name, String document, String email, String password) {
         this.id = id;
-        this.cpf = cpf;
-        this.cnpj = cnpj;
+        this.document = document;
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(Long cpf) {
-        this.cpf = cpf;
-    }
-
-    public Long getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(Long cnpj) {
-        this.cnpj = cnpj;
     }
 
     public String getName() {
@@ -51,6 +33,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
     }
 
     public String getEmail() {
