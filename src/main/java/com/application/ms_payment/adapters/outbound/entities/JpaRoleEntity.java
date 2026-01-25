@@ -1,5 +1,6 @@
 package com.application.ms_payment.adapters.outbound.entities;
 
+import com.application.ms_payment.util.enums.UserRoleEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,15 +12,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "USER_ROLE")
-public class JpaUserRoleEntity {
+@Table(name = "ROLE")
+public class JpaRoleEntity {
 
     @Id
-    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "ROLE")
-    private String role;
-
+    @Enumerated(EnumType.STRING)
+    private UserRoleEnum role;
 }

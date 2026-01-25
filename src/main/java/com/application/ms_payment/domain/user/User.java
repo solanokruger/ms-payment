@@ -1,5 +1,7 @@
 package com.application.ms_payment.domain.user;
 
+import com.application.ms_payment.domain.role.Role;
+
 public class User {
 
     private Long id;
@@ -7,16 +9,20 @@ public class User {
     private String document;
     private String email;
     private String password;
+    private Role role;
+    private Wallet wallet;
 
     public User() {
     }
 
-    public User(Long id, String name, String document, String email, String password) {
+    public User(Long id, String name, String document, String email, String password, Role role, Wallet wallet) {
         this.id = id;
-        this.document = document;
         this.name = name;
+        this.document = document;
         this.email = email;
         this.password = password;
+        this.role = role;
+        this.wallet = wallet;
     }
 
     public Long getId() {
@@ -57,5 +63,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 }

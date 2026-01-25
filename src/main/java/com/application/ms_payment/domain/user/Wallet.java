@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 
 public class Wallet {
 
-    private String id;
+    private Long id;
     private BigDecimal currency;
 
     public Wallet() {
     }
 
-    public Wallet(String id, BigDecimal currency) {
+    public Wallet(Long id, BigDecimal currency) {
         this.id = id;
         this.currency = currency;
     }
@@ -23,11 +23,11 @@ public class Wallet {
         this.currency = currency;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

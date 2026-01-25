@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {RoleMapper.class})
 public interface UserMapper {
 
     @Mappings({
@@ -23,7 +23,17 @@ public interface UserMapper {
             @Mapping(source = "userRequestDTO.document", target = "document"),
             @Mapping(source = "userRequestDTO.name", target = "name"),
             @Mapping(source = "userRequestDTO.email", target = "email"),
-            @Mapping(source = "userRequestDTO.password", target = "password")
+            @Mapping(source = "userRequestDTO.password", target = "password"),
+            @Mapping(source = "userRequestDTO.role", target = "role"),
+            @Mapping(source = "userRequestDTO.currency", target = "wallet.currency")
     })
     User dtoToEntity(UserRequestDTO userRequestDTO);
+
+    JpaUserEntity toEntity(User user);
+
+//    UserRole map(String role);
+//
+//    UserRole map(JpaUserRoleEntity jpaUserRoleEntity);
+//
+//    Wallet map(JpaUserWalletEntity jpaUserWalletEntity);
 }

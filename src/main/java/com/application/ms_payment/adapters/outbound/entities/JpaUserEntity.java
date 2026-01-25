@@ -1,13 +1,10 @@
 package com.application.ms_payment.adapters.outbound.entities;
 
-import com.application.ms_payment.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.ArrayList;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,17 +30,12 @@ public class JpaUserEntity {
     @Column(name = "PASSWORD")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<JpaUserRoleEntity> roles = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
+    private JpaRoleEntity role;
 
-    @OneToOne
-    private JpaUserWalletEntity wallet;
+    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JoinColumn(name = "WALLET_ID", referencedColumnName = "ID")
+    private JpaWalletEntity wallet;
 
-    public JpaUserEntity(User user) {
-        this.id = user.getId();
-        this.name = user.getName();
-        this.document = user.getDocument();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-    }
 }
