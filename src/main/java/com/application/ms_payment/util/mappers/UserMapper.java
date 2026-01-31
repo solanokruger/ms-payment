@@ -27,7 +27,7 @@ public interface UserMapper {
             @Mapping(source = "userRequestDTO.role", target = "role"),
             @Mapping(source = "userRequestDTO.currency", target = "wallet.currency")
     })
-    User dtoToEntity(UserRequestDTO userRequestDTO);
+    User dtoToDomain(UserRequestDTO userRequestDTO);
 
     JpaUserEntity toEntity(User user);
 

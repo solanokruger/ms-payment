@@ -17,8 +17,9 @@ public class UserServiceImpl implements UserUseCases {
     private final UserMapper userMapper;
     private final RoleRepository roleRepository;
 
+    @Override
     public User createUser(UserRequestDTO userRequestDTO) {
-        User user = userMapper.dtoToEntity(userRequestDTO);
+        User user = userMapper.dtoToDomain(userRequestDTO);
 
         user.setRole(roleRepository.findByRole(userRequestDTO.role()));
 
