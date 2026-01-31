@@ -1,0 +1,29 @@
+package com.application.ms_payment.util.mappers;
+
+import com.application.ms_payment.adapters.outbound.entities.JpaUserEntity;
+import com.application.ms_payment.domain.user.User;
+import com.application.ms_payment.domain.user.UserRequestDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+
+@Mapper(componentModel = "spring")
+public interface UserMapper {
+
+    @Mappings({
+            @Mapping(source = "jpaUserEntity.id", target = "id"),
+            @Mapping(source = "jpaUserEntity.document", target = "document"),
+            @Mapping(source = "jpaUserEntity.name", target = "name"),
+            @Mapping(source = "jpaUserEntity.email", target = "email"),
+            @Mapping(source = "jpaUserEntity.password", target = "password")
+    })
+    User toDomain(JpaUserEntity jpaUserEntity);
+
+    @Mappings({
+            @Mapping(source = "userRequestDTO.document", target = "document"),
+            @Mapping(source = "userRequestDTO.name", target = "name"),
+            @Mapping(source = "userRequestDTO.email", target = "email"),
+            @Mapping(source = "userRequestDTO.password", target = "password")
+    })
+    User dtoToEntity(UserRequestDTO userRequestDTO);
+}
