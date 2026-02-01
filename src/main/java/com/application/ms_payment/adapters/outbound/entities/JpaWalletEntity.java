@@ -1,5 +1,6 @@
 package com.application.ms_payment.adapters.outbound.entities;
 
+import com.application.ms_payment.domain.user.Wallet;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,8 +14,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-@Table(name = "USER_WALLET")
-public class JpaUserWalletEntity {
+@Table(name = "WALLET")
+public class JpaWalletEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +24,9 @@ public class JpaUserWalletEntity {
     @Column(name = "CURRENCY")
     private BigDecimal currency;
 
+    public JpaWalletEntity(Wallet wallet) {
+        this.id = wallet.getId();
+        this.currency = wallet.getCurrency();
+    }
 
 }

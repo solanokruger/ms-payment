@@ -1,6 +1,9 @@
 package com.application.ms_payment.adapters.inbound.controllers;
 
+import com.application.ms_payment.application.service.TransactionServiceImpl;
 import com.application.ms_payment.application.service.UserServiceImpl;
+import com.application.ms_payment.domain.transaction.Transaction;
+import com.application.ms_payment.domain.transaction.TransactionRequestDTO;
 import com.application.ms_payment.domain.user.User;
 import com.application.ms_payment.domain.user.UserRequestDTO;
 import jakarta.validation.Valid;
@@ -16,12 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/transfer")
 public class TransactionsController {
 
-    private final UserServiceImpl userService;
+    private final TransactionServiceImpl transactionService;
+
 
     @PostMapping
-    public ResponseEntity<User> transfer(@Valid @RequestBody UserRequestDTO userRequestDTO) {
-        User userCreated = this.userService.createUser(userRequestDTO);
-        return ResponseEntity.created(null).body(userCreated);
+    public ResponseEntity<Transaction> transfer(@Valid @RequestBody TransactionRequestDTO transactionRequestDTO) {
+        Transaction transaction = this.transactionService.createTransaction(transactionRequestDTO);
+        return ResponseEntity.created(null).body(transaction);
     }
 
 }

@@ -1,12 +1,12 @@
 package com.application.ms_payment.application.service;
 
 import com.application.ms_payment.application.usecases.UserUseCases;
+import com.application.ms_payment.domain.role.RoleRepository;
 import com.application.ms_payment.domain.user.User;
 import com.application.ms_payment.domain.user.UserRepository;
 import com.application.ms_payment.domain.user.UserRequestDTO;
 import com.application.ms_payment.util.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,12 +14,15 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserUseCases {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
+    private final RoleRepository roleRepository;
 
-    @Autowired
-    private UserMapper userMapper;
-
+    @Override
     public User createUser(UserRequestDTO userRequestDTO) {
+        User user = userMapper.dtoToDomain(userRequestDTO);
 
-        return userRepository.save(userMapper.dtoToEntity(userRequestDTO));
+        user.setRole(roleRepository.findByRole(userRequestDTO.role()));
+
+        return userRepository.save(user);
     }
 }
